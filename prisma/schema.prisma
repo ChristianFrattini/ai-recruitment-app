@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+/*model Organization {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  userLimit  Int
+  users      User[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}*/
+
+model User{
+  id String @id @unique
+    email String 
+    firstName String
+    lastName String
+    profileImage String
+    title String
+    specialization String
+    isAdmin Boolean @default(false)
+    organizationId String // Foreign key to Organization (nullable if optional)
+    organization  Organization @relation(fields: [organizationId], references: [id])
+   
+
+    createdAt DateTime @default(now())
+
+    candidates     Candidate[] 
+  }
+
+model Organization{
+  id String @id @default(cuid())
+  isUpdated Boolean @default(false)
+  name String 
+ 
+  invite Invite[]
+  users     User[] // Back-reference from User
+}
+
+
+model Invite {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  email     String
+  organization       Organization @relation(fields: [orgId], references: [id])
+  orgId     String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  used      Boolean  @default(false)
+}
+
+model Candidate {
+  id               String   @id @default(uuid())
+  name             String
+  email            String
+  phone            String
+  status           CandidateStatus
+  level            CandidateLevel
+  salaryExpectation String
+  cvUrl            String       // URL to uploaded file (S3, Vercel Blob, etc.)
+  cvText           String       // Extracted CV text
+  cvSummary        String
+  createdAt        DateTime     @default(now())
+
+  // Relation to the uploading user
+  uploadedById     String
+  uploadedBy       User         @relation(fields: [uploadedById], references: [id])
+
+  embedding Float[]
+}
+
+enum CandidateStatus {
+  actively_seeking
+  employed
+  not_looking
+}
+
+enum CandidateLevel {
+  entry
+  junior
+  mid
+  senior
+}
