@@ -29,3 +29,16 @@ export const candidateSchema = z.object({
     message: "CV file is required",
   }),
 });
+
+export const editCandidateSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z
+    .string()
+    .min(7, "Phone number is too short")
+    .max(15, "Phone number is too long")
+    .regex(/^[+0-9\s\-()]*$/, "Invalid phone number"),
+  status: z.enum(["actively_seeking", "employed", "not_looking"]),
+  level: z.enum(["entry", "junior", "mid", "senior"]),
+  salaryExpectation: z.string().min(1, "Select salary expectation"),
+});

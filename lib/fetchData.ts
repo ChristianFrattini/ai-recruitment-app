@@ -1,6 +1,6 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from "./db";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 export async function fetchOrganization() {
   const user = await fetchUser();
@@ -47,4 +47,16 @@ export async function fetchCandidates(onlyActive: boolean = false) {
     },
   });
   return candidates;
+}
+
+export async function fetchCandidate(candidateId: string) {
+  const candidate = await prisma.candidate.findUnique({
+    where: {
+      id: candidateId,
+    },
+  });
+  if (!candidate) {
+    return notFound();
+  }
+  return candidate;
 }

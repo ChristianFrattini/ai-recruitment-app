@@ -2,7 +2,12 @@
 
 import prisma from "@/lib/db";
 import { fetchUser } from "@/lib/fetchData";
-import { candidateSchema, orgSchema, profileSchema } from "@/lib/zodSchemas";
+import {
+  candidateSchema,
+  editCandidateSchema,
+  orgSchema,
+  profileSchema,
+} from "@/lib/zodSchemas";
 import { SubmissionResult } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { redirect } from "next/navigation";
@@ -163,4 +168,70 @@ export async function saveCandidate(prevState: unknown, formData: FormData) {
   }
 
   return redirect("/dashboard/addcv");
+}
+
+export async function editCandidate(prevState: unknown, formData: FormData) {
+  const user = await fetchUser();
+
+  if (!user) {
+    return redirect("/");
+  }
+
+  const submission = parseWithZod(formData, {
+    schema: editCandidateSchema,
+  });
+
+  if (submission.status !== "success") {
+    return submission.reply();
+  }
+
+  const cvtext = formData.get("cvText") as string;
+  const lines = cvtext.split("\n");
+  const cvTextTrimmed = lines.slice(0, -2).join("\n");
+
+  const level = submission.value.level;
+  const salary = submission.value.salaryExpectation;
+
+  const appendedInfo = `\n\nExperience Level: ${level}\nSalary Expectation: ${salary}`;
+
+  const finalCVText = cvTextTrimmed + appendedInfo;
+
+  const candidateId = formData.get("id") as string;
+
+  try {
+    await prisma.candidate.update({
+      where: {
+        id: candidateId,
+      },
+      data: {
+        name: submission.value.name,
+        email: submission.value.email,
+        phone: submission.value.phone,
+        level: submission.value.level,
+        status: submission.value.status,
+        salaryExpectation: submission.value.salaryExpectation,
+
+        cvText: finalCVText,
+
+        uploadedById: user.id,
+      },
+    });
+  } catch (error) {
+    console.error("Database error:", error);
+    return {
+      status: "error",
+      error: {
+        _global: ["Failed to save candidate to database."],
+      },
+    } satisfies SubmissionResult<string[]>;
+  }
+  return redirect("/dashboard/cvlibrary");
+}
+
+export async function deleteCandidate(formData: FormData) {
+  const candidateId = formData.get("candidateId") as string;
+  await prisma.candidate.delete({
+    where: { id: candidateId },
+  });
+  return redirect("/dashboard/cvlibrary");
 }

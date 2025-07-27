@@ -1,12 +1,14 @@
 "use client";
 
 import { AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   DropdownMenu,
@@ -16,6 +18,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   Table,
   TableBody,
@@ -29,6 +39,7 @@ import {
 import { CandidateLevel, CandidateStatus, Prisma } from "@prisma/client";
 import { Avatar } from "@radix-ui/react-avatar";
 import { CircleEllipsis } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const statusLabels: Record<CandidateStatus, string> = {
@@ -143,29 +154,27 @@ export default function CVTable({ candidates }: { candidates: candidateType }) {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Options</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => setOpen(true)}>
-                      View CV
+                    <DropdownMenuItem asChild>
+                      <Link href={`/dashboard/cvlibrary/${candidate.id}`}>
+                        View Candidate Profile
+                      </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>Modify details</DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link
+                        href={`/dashboard/cvlibrary/${candidate.id}/editcv`}
+                      >
+                        Modify details
+                      </Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem className="text-red-600">
-                      Delete
+                      <Link
+                        href={`/dashboard/cvlibrary/${candidate.id}/delete`}
+                      >
+                        Delete
+                      </Link>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-
-                <Dialog open={open} onOpenChange={setOpen}>
-                  <DialogContent className="max-h-[80vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle>{candidate.name}&apos;s CV</DialogTitle>
-                      <DialogDescription>
-                        Full CV text preview
-                      </DialogDescription>
-                    </DialogHeader>
-                    <pre className="whitespace-pre-wrap text-sm text-muted-foreground">
-                      {candidate.cvText}
-                    </pre>
-                  </DialogContent>
-                </Dialog>
               </TableCell>
             </TableRow>
           ))}
