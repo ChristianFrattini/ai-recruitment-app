@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   MobileNav,
   MobileNavHeader,
@@ -13,10 +12,9 @@ import {
   NavItems,
 } from "@/components/ui/resizable-navbar";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { get } from "http";
+
 import { House } from "lucide-react";
-import { useRouter } from "next/navigation";
+
 import React, { useState } from "react";
 
 export default function NavBar({

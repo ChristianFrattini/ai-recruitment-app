@@ -1,8 +1,7 @@
 "use client";
 import { saveCandidate } from "@/actions/actions";
 import SubmitButton from "@/app/components/SubmitButton";
-import { Button } from "@/components/ui/button";
-import { FileUpload } from "@/components/ui/file-upload";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -17,7 +16,7 @@ import { candidateSchema } from "@/lib/zodSchemas";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { motion } from "framer-motion";
-import { format } from "path";
+
 import React, { useRef, useState } from "react";
 import { useActionState } from "react";
 import { IconUpload } from "@tabler/icons-react";

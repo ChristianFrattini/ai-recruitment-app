@@ -1,11 +1,8 @@
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import { FlipWords } from "@/components/ui/flip-words";
 import React from "react";
-import Pricing from "./Pricing";
 
-import { Sparkles } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import Features from "./Features";
 
 export default function Hero() {
   const words = ["Better", "Efficient", "Innovative", "Modern"];

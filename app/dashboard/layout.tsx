@@ -2,7 +2,6 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import NavBar from "../components/dashboard-components/NavBar";
 import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
-import ClientUserProvider from "../components/dashboard-components/ClientUserProvider";
 
 export default async function RootLayout({
   children,

@@ -15,10 +15,10 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+
 import React from "react";
 import ProfileForm from "./ProfileForm";
-import { useUserStore } from "@/store/userStore";
+
 import { fetchUser } from "@/lib/fetchData";
 
 export default async function ProfileCard() {

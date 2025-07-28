@@ -17,21 +17,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import React from "react";
-import ProfileForm from "./ProfileForm";
+
 import OrganizationForm from "./OrganizationForm";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import InviteForm from "./InviteForm";
 import { fetchOrganization, fetchUser } from "@/lib/fetchData";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import Members from "./Members";
-import { useUserStore } from "@/store/userStore";
-import Link from "next/link";
+
 import { Plus } from "lucide-react";
 
 export default async function OrganizationCard() {

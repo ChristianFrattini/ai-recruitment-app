@@ -1,7 +1,7 @@
 "use client";
 
 import { editCandidate } from "@/actions/actions";
-import { Badge } from "@/components/ui/badge";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -21,8 +21,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { fetchCandidate } from "@/lib/fetchData";
-import { candidateSchema, editCandidateSchema } from "@/lib/zodSchemas";
+
+import { editCandidateSchema } from "@/lib/zodSchemas";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { $Enums } from "@prisma/client";

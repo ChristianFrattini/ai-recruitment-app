@@ -9,7 +9,7 @@ import React from "react";
 import Search from "../components/dashboard-components/Search";
 import prisma from "@/lib/db";
 import ClientUserProvider from "../components/dashboard-components/ClientUserProvider";
-import InviteForm from "../components/dashboard-components/InviteForm";
+
 import { fetchCandidates } from "@/lib/fetchData";
 
 export default async function DashboardPage() {

@@ -1,7 +1,6 @@
-import { Separator } from "@/components/ui/separator";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
-import { WobbleCard } from "@/components/ui/wobble-card";
+
 import React from "react";
 import PricingCard from "./PricingCard";
 import { PRICING_PLANS } from "@/constants/pricing";

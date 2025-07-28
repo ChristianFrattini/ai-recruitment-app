@@ -1,7 +1,6 @@
-import InviteForm from "@/app/components/dashboard-components/InviteForm";
 import OrganizationCard from "@/app/components/dashboard-components/OrganizationCard";
 import ProfileCard from "@/app/components/dashboard-components/ProfileCard";
-import { useUserStore } from "@/store/userStore";
+
 import React from "react";
 
 export default function ProfilePage() {

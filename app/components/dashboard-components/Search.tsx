@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
-import { FileSearch, Loader2 } from "lucide-react";
+import { FileSearch, Loader2, MessageCircleQuestion } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import Members from "./Members";
+
 import { candidateType } from "@/types/candidate.types";
 import { getQueryEmbedding } from "@/lib/embeddingsFunctions";
 import CandidateCard from "./CandidateCard";
@@ -65,6 +65,22 @@ function cosineSimilarity(vecA: number[], vecB: number[]): number {
   return dotProduct / (normA * normB);
 }
 
+function isQueryRelevant(query: string): boolean {
+  const lowerQuery = query.toLowerCase();
+  const irrelevantPatterns = [
+    "hello",
+    "hi",
+    "hey",
+    "how are you",
+    "what's up",
+    "good morning",
+    "good evening",
+    "test",
+    "asdf",
+  ];
+  return !irrelevantPatterns.some((pattern) => lowerQuery.includes(pattern));
+}
+
 export default function Search({ candidates }: { candidates: candidateType }) {
   const [query, setQuery] = useState("");
   type CandidateWithScore = (typeof candidates)[number] & { score: number };
@@ -72,12 +88,24 @@ export default function Search({ candidates }: { candidates: candidateType }) {
   const [filtered, setFiltered] = useState<CandidateWithScore[] | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const [irrelevantWarning, setIrrelevantWarning] = useState(false);
+
   const handleSearch = async () => {
     if (filtered) {
       setFiltered(null);
     }
 
     if (!query.trim()) return;
+
+    console.log("Query", isQueryRelevant(query));
+
+    if (!isQueryRelevant(query)) {
+      setIrrelevantWarning(true);
+      return;
+    }
+    setIrrelevantWarning(false);
+
+    console.log("irrelevant?", irrelevantWarning);
 
     setLoading(true); // start loading
 
@@ -127,9 +155,18 @@ export default function Search({ candidates }: { candidates: candidateType }) {
       <div className="mt-10 space-y-4">
         {loading && (
           <div className={"flex flex-col items-center justify-center mt-10"}>
-            <Loader2 className="h-6 w-6 animate-spin text-blue-500 mx-auto" />
+            <Loader2 className="h-8 w-8 animate-spin text-blue-500 mx-auto" />
             <p className="text-center text-muted-foreground mt-2">
               Searching for candidates...
+            </p>
+          </div>
+        )}
+
+        {irrelevantWarning && (
+          <div className={"flex flex-col items-center justify-center mt-10"}>
+            <MessageCircleQuestion className="h-8 w-8  text-yellow-500 mx-auto" />
+            <p className="text-center text-muted-foreground mt-2">
+              Please enter a search related to a candidate.
             </p>
           </div>
         )}

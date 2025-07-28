@@ -1,9 +1,9 @@
 "use client";
 
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { useUserStore } from "@/store/userStore";
+
 import { FilePlus, LibraryBig, Search, User } from "lucide-react";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function NavBar() {
   const links = [

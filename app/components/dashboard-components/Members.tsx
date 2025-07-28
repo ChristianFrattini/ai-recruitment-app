@@ -1,6 +1,5 @@
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
-import { fetchOrganization } from "@/lib/fetchData";
-import { UserType } from "@/types/user.types";
+
 import React from "react";
 
 const people = [

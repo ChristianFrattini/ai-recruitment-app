@@ -1,6 +1,6 @@
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { PricingPlanType } from "@/types/pricing.types";
-import { Computer } from "lucide-react";
+
 import React from "react";
 
 export default function PricingCard({ plan }: { plan: PricingPlanType }) {
