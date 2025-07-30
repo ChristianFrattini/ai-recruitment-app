@@ -7,7 +7,7 @@ import { FileSearch, Loader2, MessageCircleQuestion } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 import { candidateType } from "@/types/candidate.types";
-import { getQueryEmbedding } from "@/lib/embeddingsFunctions";
+import { getQueryEmbedding, isQueryRelevant } from "@/lib/embeddingsFunctions";
 import CandidateCard from "./CandidateCard";
 
 const words = [
@@ -65,22 +65,6 @@ function cosineSimilarity(vecA: number[], vecB: number[]): number {
   return dotProduct / (normA * normB);
 }
 
-function isQueryRelevant(query: string): boolean {
-  const lowerQuery = query.toLowerCase();
-  const irrelevantPatterns = [
-    "hello",
-    "hi",
-    "hey",
-    "how are you",
-    "what's up",
-    "good morning",
-    "good evening",
-    "test",
-    "asdf",
-  ];
-  return !irrelevantPatterns.some((pattern) => lowerQuery.includes(pattern));
-}
-
 export default function Search({ candidates }: { candidates: candidateType }) {
   const [query, setQuery] = useState("");
   type CandidateWithScore = (typeof candidates)[number] & { score: number };
@@ -99,15 +83,17 @@ export default function Search({ candidates }: { candidates: candidateType }) {
 
     console.log("Query", isQueryRelevant(query));
 
-    if (!isQueryRelevant(query)) {
+    setIrrelevantWarning(false);
+    setLoading(true); // start loading
+
+    if (!(await isQueryRelevant(query))) {
       setIrrelevantWarning(true);
+      setLoading(false); // start loading
       return;
     }
     setIrrelevantWarning(false);
 
     console.log("irrelevant?", irrelevantWarning);
-
-    setLoading(true); // start loading
 
     const queryEmbedding = await getQueryEmbedding(query);
 

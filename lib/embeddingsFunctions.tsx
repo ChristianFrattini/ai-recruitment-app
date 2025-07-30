@@ -37,3 +37,20 @@ export async function getQueryEmbedding(query: string): Promise<number[]> {
   });
   return response.data[0].embedding;
 }
+
+export async function isQueryRelevant(query: string): Promise<boolean> {
+  const systemPrompt = `You are an assistant that helps classify user input. Only respond with "yes" or "no".`;
+  const userPrompt = `Is the following input related to searching for job candidates, resumes, skills, or job requirements?\n\n"${query}"`;
+
+  const res = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userPrompt },
+    ],
+    temperature: 0,
+  });
+
+  const answer = res.choices[0].message.content?.trim().toLowerCase();
+  return answer === "yes";
+}
