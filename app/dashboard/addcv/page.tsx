@@ -48,15 +48,6 @@ export default function AddCVPage() {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = (files: File[]) => {
-    if (files.length > 0 && fileInputRef.current) {
-      // Create a DataTransfer object to simulate file input
-      const dataTransfer = new DataTransfer();
-      dataTransfer.items.add(files[0]);
-      fileInputRef.current.files = dataTransfer.files;
-    }
-  };
-
   const handleFileChange = (newFiles: File[]) => {
     const fileToSet = newFiles.length > 0 ? [newFiles[0]] : [];
     setFiles(fileToSet);
@@ -320,7 +311,7 @@ export default function AddCVPage() {
   );
 }
 
-export function GridPattern() {
+function GridPattern() {
   const columns = 41;
   const rows = 11;
 

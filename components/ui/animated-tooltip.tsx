@@ -7,7 +7,6 @@ import {
   useTransform,
   AnimatePresence,
 } from "framer-motion";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const AnimatedTooltip = ({
   items,

@@ -33,7 +33,7 @@ export default function Features() {
         <div className="flex flex-wrap justify-center gap-[4rem] mt-10">
           {/* FETURES LIST */}
 
-          {FEATURES.map((feature, index) => (
+          {FEATURES.map((feature) => (
             <motion.div
               key={feature.id}
               className="group relative h-[12rem] w-[10rem] flex flex-col items-center rounded-xl bg-[#0f0f1a] p-8 text-center border border-[#1e1e2e] shadow-sm hover:shadow-lg transition-all cursor-pointer"

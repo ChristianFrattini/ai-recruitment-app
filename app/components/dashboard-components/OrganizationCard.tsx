@@ -5,7 +5,7 @@ import {
   ModalTrigger,
 } from "@/components/ui/animated-modal";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -21,7 +21,7 @@ import React from "react";
 import OrganizationForm from "./OrganizationForm";
 
 import InviteForm from "./InviteForm";
-import { fetchOrganization, fetchUser } from "@/lib/fetchData";
+import { fetchOrganization } from "@/lib/fetchData";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 
 import { Plus } from "lucide-react";

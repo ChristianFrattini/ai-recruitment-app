@@ -23,7 +23,6 @@ export default function SubmitButton({
   text,
   loadingText,
   variant,
-  loading,
 }: buttonProps) {
   const { pending } = useFormStatus();
   return (

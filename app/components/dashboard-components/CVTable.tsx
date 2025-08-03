@@ -25,7 +25,7 @@ import { CandidateLevel, CandidateStatus, Prisma } from "@prisma/client";
 import { Avatar } from "@radix-ui/react-avatar";
 import { CircleEllipsis } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 
 const statusLabels: Record<CandidateStatus, string> = {
   actively_seeking: "Actively Seeking",
@@ -51,7 +51,6 @@ export type candidateType = Prisma.CandidateGetPayload<{
 }>[];
 
 export default function CVTable({ candidates }: { candidates: candidateType }) {
-  const [open, setOpen] = useState(false);
   return (
     <>
       <Table className="w-full border border-muted rounded-2xl shadow-sm">

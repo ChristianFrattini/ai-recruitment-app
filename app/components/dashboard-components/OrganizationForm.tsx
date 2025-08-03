@@ -22,8 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
-import InviteForm from "./InviteForm";
 
 interface User {
   id: string;

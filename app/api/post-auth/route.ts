@@ -45,6 +45,7 @@ export async function GET() {
           profileImage: user.picture ?? "",
           specialization: "Frontend Engineering",
           title: "Senior Recruiter",
+          organizationId: invite.orgId,
         },
       });
     }
