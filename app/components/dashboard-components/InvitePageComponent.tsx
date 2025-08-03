@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 
 export default function InvitePageComponent() {
@@ -13,7 +13,7 @@ export default function InvitePageComponent() {
     if (!token) return;
 
     Cookies.set("inviteToken", token);
-    router.push("/api/auth/login?post_login_redirect_url=/api/post-auth");
+    redirect("/api/auth/login?post_login_redirect_url=/api/post-auth");
   }, [token]);
 
   return (
