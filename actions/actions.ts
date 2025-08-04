@@ -11,8 +11,6 @@ import {
 import { SubmissionResult } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod";
 import { redirect } from "next/navigation";
-import pdfParse from "pdf-parse";
-import { PDFParser } from "pdf2json";
 import pdf from "pdf-parse"; // Alternative simpler library
 import { createEmbedding } from "@/lib/embeddingsFunctions";
 import { summarizeText } from "@/lib/createSummary";
