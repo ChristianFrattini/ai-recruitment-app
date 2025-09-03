@@ -166,7 +166,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between  px-0 py-2 lg:hidden",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
+        visible && "bg-[rgba(0,10,60,0.6)] dark:bg-[rgba(90,10,130,0.4)]",
         className,
       )}
     >
@@ -224,9 +224,9 @@ export const MobileNavToggle = ({
   onClick: () => void;
 }) => {
   return isOpen ? (
-    <X className="text-black dark:text-white" onClick={onClick} />
+    <X className="text-gray-100 " onClick={onClick} />
   ) : (
-    <Menu className="text-black dark:text-white" onClick={onClick} />
+    <Menu className="text-gray-100 " onClick={onClick} />
   );
 };
 

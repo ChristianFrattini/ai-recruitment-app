@@ -10,6 +10,7 @@ export async function sendInviteEmail({
   to: string;
   link: string;
 }) {
+  console.log("TO", to);
   console.log(link);
   return await resend.emails.send({
     from: "Recruiting App <onboarding@resend.dev>",
