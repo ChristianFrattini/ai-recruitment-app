@@ -99,6 +99,7 @@ export default function AddCVPage() {
               name={fields.name.name}
               defaultValue={fields.name.initialValue}
             />
+            <p className={"text-red-500 text-sm"}>{fields.name.errors}</p>
           </div>
           <div className={"flex flex-col gap-2"}>
             <Label className={"text-lg"}>Phone Number</Label>
@@ -109,6 +110,7 @@ export default function AddCVPage() {
               name={fields.phone.name}
               defaultValue={fields.phone.initialValue}
             />
+            <p className={"text-red-500 text-sm"}>{fields.phone.errors}</p>
           </div>
           <div className={"flex flex-col gap-2"}>
             <Label className={"text-lg"}>Email</Label>
@@ -119,6 +121,7 @@ export default function AddCVPage() {
               name={fields.email.name}
               defaultValue={fields.email.initialValue}
             />
+            <p className={"text-red-500 text-sm"}>{fields.email.errors}</p>
           </div>
           <div className={"flex flex-col gap-2"}>
             <Label className={"text-lg"}>Status</Label>
@@ -138,6 +141,7 @@ export default function AddCVPage() {
                 <SelectItem value="not_looking">Not Looking</SelectItem>
               </SelectContent>
             </Select>
+            <p className={"text-red-500 text-sm"}>{fields.status.errors}</p>
           </div>
 
           <div className={"flex flex-col gap-2"}>
@@ -157,6 +161,7 @@ export default function AddCVPage() {
                 <SelectItem value="senior">Senior</SelectItem>
               </SelectContent>
             </Select>
+            <p className={"text-red-500 text-sm"}>{fields.level.errors}</p>
           </div>
 
           <div className={"flex flex-col gap-2"}>
@@ -177,6 +182,9 @@ export default function AddCVPage() {
                 <SelectItem value="£60000-£100000">£60000-£100000</SelectItem>
               </SelectContent>
             </Select>
+            <p className={"text-red-500 text-sm"}>
+              {fields.salaryExpectation.errors}
+            </p>
           </div>
         </div>
         <div className="w-full mt-10 max-w-4xl mb-10 border border-dashed bg-white dark:bg-black border-neutral-200 dark:border-neutral-800 rounded-lg">
@@ -305,6 +313,7 @@ export default function AddCVPage() {
               </div>
             </motion.div>
           </div>
+          <p className={"text-red-500 text-sm"}>{fields.file.errors}</p>
         </div>
       </div>
     </form>

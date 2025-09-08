@@ -30,7 +30,7 @@ export default async function DeleteCandidatePage({
           </CardTitle>
           <CardDescription className={"text-md"}>
             This action cannot be undone. This action will permanently delete
-            this item and all its data from the database!
+            this candidate and all its data from the database!
           </CardDescription>
         </CardHeader>
         <CardFooter className={"w-full flex justify-between"}>
