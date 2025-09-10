@@ -56,7 +56,12 @@ export default function OrganizationForm({ org }: { org: OrgProps }) {
   });
 
   return (
-    <form id={form.id} onSubmit={form.onSubmit} action={action}>
+    <form
+      id={form.id}
+      onSubmit={form.onSubmit}
+      action={action}
+      className={"mt-5"}
+    >
       <input type="hidden" name="orgId" value={org.id} />
 
       <div className="flex items-center gap-4">
@@ -69,7 +74,7 @@ export default function OrganizationForm({ org }: { org: OrgProps }) {
         <CardHeader>
           <CardTitle>Edit {org.name}</CardTitle>
           <CardDescription>
-            Update your organization details and save changes.
+            Update your organization details and save the changes.
           </CardDescription>
         </CardHeader>
 

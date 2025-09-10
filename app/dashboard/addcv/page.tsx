@@ -78,7 +78,11 @@ export default function AddCVPage() {
   });
   return (
     <form id={form.id} onSubmit={form.onSubmit} action={action}>
-      <div className={"flex flex-col items-center justify-center"}>
+      <div
+        className={
+          "flex flex-col items-center justify-center mx-2 sm:mx-[8rem] md:mx-[20rem]"
+        }
+      >
         <TextGenerateEffect
           words={words}
           className={"!text-3xl !text-black text-gr"}
@@ -90,50 +94,60 @@ export default function AddCVPage() {
           <SubmitButton text={"Upload CV"} loadingText={"Uploading"} />
         </div>
 
-        <div className={"grid gap-12 grid-cols-3 mt-10"}>
-          <div className={"flex flex-col gap-2"}>
-            <Label className={"text-lg"}>Candidate Name</Label>
+        <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-8 sm:mt-10 w-full">
+          {/* Candidate Name */}
+          <div className="flex flex-col gap-2">
+            <Label className="text-base sm:text-lg">Candidate Name</Label>
             <Input
-              placeholder={"John Doe"}
+              placeholder="John Doe"
               key={fields.name.key}
               name={fields.name.name}
               defaultValue={fields.name.initialValue}
+              className="w-full"
             />
-            <p className={"text-red-500 text-sm"}>{fields.name.errors}</p>
+            <p className="text-red-500 text-sm">{fields.name.errors}</p>
           </div>
-          <div className={"flex flex-col gap-2"}>
-            <Label className={"text-lg"}>Phone Number</Label>
+
+          {/* Phone Number */}
+          <div className="flex flex-col gap-2">
+            <Label className="text-base sm:text-lg">Phone Number</Label>
             <Input
-              placeholder={"0712378945"}
-              type={"tel"}
+              placeholder="0712378945"
+              type="tel"
               key={fields.phone.key}
               name={fields.phone.name}
               defaultValue={fields.phone.initialValue}
+              className="w-full"
             />
-            <p className={"text-red-500 text-sm"}>{fields.phone.errors}</p>
+            <p className="text-red-500 text-sm">{fields.phone.errors}</p>
           </div>
-          <div className={"flex flex-col gap-2"}>
-            <Label className={"text-lg"}>Email</Label>
+
+          {/* Email */}
+          <div className="flex flex-col gap-2">
+            <Label className="text-base sm:text-lg">Email</Label>
             <Input
-              placeholder={"johndoe@email.com"}
-              type={"email"}
+              placeholder="johndoe@email.com"
+              type="email"
               key={fields.email.key}
               name={fields.email.name}
               defaultValue={fields.email.initialValue}
+              className="w-full"
             />
-            <p className={"text-red-500 text-sm"}>{fields.email.errors}</p>
+            <p className="text-red-500 text-sm">{fields.email.errors}</p>
           </div>
-          <div className={"flex flex-col gap-2"}>
-            <Label className={"text-lg"}>Status</Label>
+
+          {/* Status */}
+          <div className="flex flex-col gap-2">
+            <Label className="text-base sm:text-lg">Status</Label>
             <Select
               key={fields.status.key}
               name={fields.status.name}
               defaultValue={fields.status.initialValue}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
-              <SelectContent position={"popper"}>
+              <SelectContent>
                 <SelectItem value="actively_seeking">
                   Actively Seeking
                 </SelectItem>
@@ -141,17 +155,18 @@ export default function AddCVPage() {
                 <SelectItem value="not_looking">Not Looking</SelectItem>
               </SelectContent>
             </Select>
-            <p className={"text-red-500 text-sm"}>{fields.status.errors}</p>
+            <p className="text-red-500 text-sm">{fields.status.errors}</p>
           </div>
 
-          <div className={"flex flex-col gap-2"}>
-            <Label className={"text-lg"}>Candidate Level</Label>
+          {/* Candidate Level */}
+          <div className="flex flex-col gap-2">
+            <Label className="text-base sm:text-lg">Candidate Level</Label>
             <Select
               key={fields.level.key}
               name={fields.level.name}
               defaultValue={fields.level.initialValue}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select Experience" />
               </SelectTrigger>
               <SelectContent>
@@ -161,17 +176,18 @@ export default function AddCVPage() {
                 <SelectItem value="senior">Senior</SelectItem>
               </SelectContent>
             </Select>
-            <p className={"text-red-500 text-sm"}>{fields.level.errors}</p>
+            <p className="text-red-500 text-sm">{fields.level.errors}</p>
           </div>
 
-          <div className={"flex flex-col gap-2"}>
-            <Label className={"text-lg"}>Salary Expectation</Label>
+          {/* Salary Expectation */}
+          <div className="flex flex-col gap-2">
+            <Label className="text-base sm:text-lg">Salary Expectation</Label>
             <Select
               key={fields.salaryExpectation.key}
               name={fields.salaryExpectation.name}
               defaultValue={fields.salaryExpectation.initialValue}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Salary" />
               </SelectTrigger>
               <SelectContent>
@@ -182,7 +198,7 @@ export default function AddCVPage() {
                 <SelectItem value="£60000-£100000">£60000-£100000</SelectItem>
               </SelectContent>
             </Select>
-            <p className={"text-red-500 text-sm"}>
+            <p className="text-red-500 text-sm">
               {fields.salaryExpectation.errors}
             </p>
           </div>

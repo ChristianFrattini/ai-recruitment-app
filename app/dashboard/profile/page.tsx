@@ -5,8 +5,10 @@ import React from "react";
 
 export default function ProfilePage() {
   return (
-    <div className={"md:flex flex-col items-center justify-center my-[10vh]"}>
-      <div className={"gap-[7vh] md:flex"}>
+    <div
+      className={"md:flex flex-col items-center justify-center my-[10vh] mx-2"}
+    >
+      <div className={"gap-5 space-y-5 md:space-y-0  md:flex "}>
         <ProfileCard />
         <OrganizationCard />
       </div>{" "}

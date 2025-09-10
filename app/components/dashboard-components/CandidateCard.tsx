@@ -63,32 +63,36 @@ const statusStyles: Record<string, string> = {
 export default function CandidateCard({ candidate }: CandidateCardProps) {
   return (
     <motion.div
-      className="m-5"
+      className="m-3 sm:m-5"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <motion.div
-        whileHover={{ scale: 1.01 }}
-        transition={{ type: "spring", stiffness: 300 }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ type: "spring", stiffness: 250 }}
       >
-        <Card className="shadow-lg rounded-2xl border border-gray-200">
-          <CardHeader className="pb-3">
-            <div className="flex justify-between items-start">
-              <div>
-                <CardTitle className="text-xl font-semibold">
+        <Card className="flex flex-col h-full w-full sm:w-72 md:w-80 lg:w-96 shadow-lg rounded-2xl border border-gray-200 bg-white hover:shadow-xl transition-shadow">
+          {/* HEADER */}
+          <CardHeader className="pb-3 sm:pb-4">
+            <div className="flex justify-between items-start gap-3">
+              <div className="space-y-1">
+                <CardTitle className="text-base sm:text-lg md:text-xl font-semibold leading-snug">
                   {candidate.name}
                 </CardTitle>
-                <CardDescription className="text-sm text-muted-foreground mt-1">
+                <CardDescription className="text-xs sm:text-sm text-muted-foreground">
                   {candidate.email} · {candidate.phone}
                 </CardDescription>
               </div>
-              <div className="text-right space-y-1">
-                <Badge variant="outline">
+              <div className="text-right space-y-1 shrink-0">
+                <Badge
+                  variant="outline"
+                  className="px-2 py-0.5 text-[10px] sm:text-xs"
+                >
                   {experienceLabels[candidate.level]}
                 </Badge>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-[11px] sm:text-xs text-muted-foreground">
                   Match:{" "}
                   <span className="font-medium">
                     {(candidate.score * 100).toFixed(1)}%
@@ -98,19 +102,20 @@ export default function CandidateCard({ candidate }: CandidateCardProps) {
             </div>
           </CardHeader>
 
-          <CardContent className="space-y-3">
-            <div className="text-sm">
+          {/* CONTENT */}
+          <CardContent className="flex-1 space-y-4">
+            <div className="text-xs sm:text-sm">
               <p className="font-medium mb-1 text-muted-foreground">
                 CV Summary:
               </p>
-              <p className="whitespace-pre-line">{candidate.cvSummary}</p>
+              <p className="whitespace-pre-line ">{candidate.cvSummary}</p>
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t mt-4 text-sm text-muted-foreground">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 pt-3 border-t text-xs sm:text-sm text-muted-foreground">
               <p>
                 Status:{" "}
                 <span
-                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                  className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium ${
                     statusStyles[candidate.status] ??
                     "bg-gray-100 text-gray-800"
                   }`}
@@ -119,19 +124,21 @@ export default function CandidateCard({ candidate }: CandidateCardProps) {
                 </span>
               </p>
               <p>
-                Expected Salary:{" "}
+                Salary:{" "}
                 <span className="font-medium">
                   {candidate.salaryExpectation}
                 </span>
               </p>
             </div>
           </CardContent>
-          <CardFooter className={"flex items-center justify-end"}>
+
+          {/* FOOTER */}
+          <CardFooter className="flex justify-end pt-3 sm:pt-4">
             <Sheet>
               <SheetTrigger asChild>
-                <Button>View CV</Button>
+                <Button className="rounded-xl w-full sm:w-auto">View CV</Button>
               </SheetTrigger>
-              <SheetContent side={"bottom"}>
+              <SheetContent side="bottom" className="max-h-screen">
                 <SheetHeader>
                   <SheetTitle>Candidate CV</SheetTitle>
                   <SheetDescription>
