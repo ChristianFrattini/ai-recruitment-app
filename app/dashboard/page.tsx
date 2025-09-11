@@ -24,18 +24,12 @@ export default async function DashboardPage() {
 
   const candidates = await fetchCandidates(true);
   return (
-    <div className={"h-full m-10"}>
+    <div className={"md:mt-5 md:ml-5 mt-2 ml-5"}>
       <div className={"flex justify-between items-center"}>
         <div>
-          <h2 className={"font-semibold md:text-2xl text-xl"}>Welcome back</h2>
-        </div>
-        <div>
-          <Button asChild className={"flex items-center justify-center"}>
-            <LogoutLink>
-              <LogOut className={"h-5 w-5"} />
-              <span className={"hidden md:inline"}>Logout</span>
-            </LogoutLink>
-          </Button>
+          <h2 className={"font-semibold md:text-xl text-lg"}>
+            Welcome back {dbUser.firstName}
+          </h2>
         </div>
       </div>
       <ClientUserProvider dbUser={dbUser} />

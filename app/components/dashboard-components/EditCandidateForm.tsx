@@ -79,7 +79,7 @@ export default function EditCandidateForm({ candidate }: CandidateType) {
       </Button>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl font-semibold flex justify-between items-center">
+          <CardTitle className="text-2xl font-semibold flex md:flex-row flex-col justify-between ">
             <div className={"flex flex-col gap-2"}>
               <Label className={"text-lg"}>Candidate Name</Label>
               <Input

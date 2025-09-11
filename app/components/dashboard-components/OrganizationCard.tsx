@@ -25,6 +25,7 @@ import { fetchOrganization } from "@/lib/fetchData";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 
 import { Plus } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default async function OrganizationCard() {
   const org = await fetchOrganization();
@@ -132,7 +133,7 @@ export default async function OrganizationCard() {
               <span>Update Info</span>
             </ModalTrigger>
             <ModalBody>
-              <ModalContent>
+              <ModalContent className="max-h-[80vh] overflow-y-auto">
                 {org ? (
                   <OrganizationForm org={org} />
                 ) : (

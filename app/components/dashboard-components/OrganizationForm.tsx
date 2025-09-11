@@ -22,6 +22,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface User {
   id: string;
@@ -77,7 +78,6 @@ export default function OrganizationForm({ org }: { org: OrgProps }) {
             Update your organization details and save the changes.
           </CardDescription>
         </CardHeader>
-
         <CardContent>
           <div className="flex flex-col gap-6">
             {/* Avatar Section */}
