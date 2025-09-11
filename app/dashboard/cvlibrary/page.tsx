@@ -15,7 +15,7 @@ export default async function CVLibraryPage() {
         textSize={"text-2xl"}
         textcolour={"text-gray-700"}
       />
-      <div className={"mt-5  w-full px-10"}>
+      <div className={"mt-5  w-full px-2 md:px-10"}>
         <CVTable candidates={candidates} />
       </div>
     </div>
