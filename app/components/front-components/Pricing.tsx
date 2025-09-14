@@ -21,12 +21,12 @@ export default function Pricing() {
       }
       id={"pricing"}
     >
-      <div className={"flex flex-col justify-center items-center "}>
+      <div className={"flex flex-col justify-center items-center mx-2 "}>
         <TypewriterEffect words={words} />
         <TextGenerateEffect words={phrase} duration={0.5} />
       </div>
 
-      <div className="flex flex-wrap justify-center gap-[8rem] mt-10">
+      <div className="flex flex-wrap justify-center gap-[8rem] mt-10 mx-4">
         {/* PRICE CARDS */}
 
         {PRICING_PLANS.map((plan) => (

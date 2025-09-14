@@ -122,7 +122,13 @@ export default function Search({ candidates }: { candidates: candidateType }) {
         <TypewriterEffect words={words} delay={0.05} />
 
         {/* Search Bar */}
-        <div className="relative w-full max-w-[900px] mt-8 px-2 sm:px-4 py-3 sm:py-4 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:gap-2">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // prevent page reload
+            handleSearch();
+          }}
+          className="relative w-full max-w-[900px] mt-8 px-2 sm:px-4 py-3 sm:py-4 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:gap-2"
+        >
           <Input
             required
             value={query}
@@ -132,13 +138,12 @@ export default function Search({ candidates }: { candidates: candidateType }) {
           />
           <Button
             variant="outline"
-            type="button"
-            className="absolute sm:static right-3  sm:right-0 top-[40%] sm:top-auto -translate-y-1/2 sm:translate-y-0 mt-2 sm:mt-0 h-10 w-10 sm:h-12 sm:w-12 p-0 rounded-full flex items-center justify-center"
-            onClick={handleSearch}
+            type="submit" // 👈 important: make it submit the form
+            className="absolute sm:static right-3 sm:right-0 top-[40%] sm:top-auto -translate-y-1/2 sm:translate-y-0 mt-2 sm:mt-0 h-10 w-10 sm:h-12 sm:w-12 p-0 rounded-full flex items-center justify-center"
           >
             <FileSearch className="h-5 w-5 sm:h-6 sm:w-6" />
           </Button>
-        </div>
+        </form>
       </div>
 
       {/* Results Section */}
