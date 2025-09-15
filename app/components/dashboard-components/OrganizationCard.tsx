@@ -21,14 +21,16 @@ import React from "react";
 import OrganizationForm from "./OrganizationForm";
 
 import InviteForm from "./InviteForm";
-import { fetchOrganization } from "@/lib/fetchData";
+import { fetchOrganization, fetchUser } from "@/lib/fetchData";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 
-import { Plus } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { UserRoundCog, UserRoundMinus, UserRoundPlus } from "lucide-react";
+
+import ManageMember from "./RemoveMember";
 
 export default async function OrganizationCard() {
   const org = await fetchOrganization();
+  const user = await fetchUser();
 
   const members =
     org?.users?.map((user, index) => ({
@@ -93,7 +95,7 @@ export default async function OrganizationCard() {
             </p>
             <div
               className={
-                "flex flex-wrap items-center justify-between w-full mt-4 "
+                "flex flex-wrap md:flex-row flex-col items-center md:justify-between justify-center w-full mt-4 gap-4  "
               }
             >
               <div className={"flex"}>
@@ -107,21 +109,40 @@ export default async function OrganizationCard() {
               </div>
 
               <div className={"flex items-center justify-end"}>
-                <Modal>
-                  <ModalTrigger className="ml-5 flex items-center justify-end bg-white text-black hover:bg-gray-400  border shadow-md rounded-full hover:opacity-90 transition duration-300 w-full md:w-fit">
-                    <div className={"flex flex-col items-center"}>
-                      <Plus className={"h-5 w-5"} />
-                      <span>Invite</span>
-                    </div>
-                  </ModalTrigger>
-                  <ModalBody>
-                    <ModalContent
-                      className={"flex items-center justify-center"}
+                <div className="flex flex-col gap-2">
+                  <Modal>
+                    <ModalTrigger
+                      disabled={!user.isAdmin}
+                      className=" flex flex-col items-center justify-center bg-white text-black hover:bg-gray-400 border shadow-md rounded-full hover:opacity-90 transition duration-300 w-full h-full"
                     >
-                      <InviteForm orgId={org?.id as string} />
-                    </ModalContent>
-                  </ModalBody>
-                </Modal>
+                      <UserRoundPlus className="h-10 w-10" />
+                      <span>Invite</span>
+                    </ModalTrigger>
+                    <ModalBody>
+                      <ModalContent className="flex items-center justify-center">
+                        <InviteForm orgId={org?.id as string} />
+                      </ModalContent>
+                    </ModalBody>
+                  </Modal>
+
+                  <Modal>
+                    <ModalTrigger
+                      disabled={!user.isAdmin}
+                      className=" flex flex-col items-center justify-center bg-white text-black hover:bg-gray-400 border shadow-md rounded-full hover:opacity-90 transition duration-300 w-full h-full"
+                    >
+                      <UserRoundCog className="h-10 w-10" />
+                      <span>Manage</span>
+                    </ModalTrigger>
+                    <ModalBody>
+                      <ModalContent className="flex items-center justify-center">
+                        <ManageMember
+                          users={org?.users || []}
+                          userId={user.id}
+                        />
+                      </ModalContent>
+                    </ModalBody>
+                  </Modal>
+                </div>
               </div>
             </div>
           </div>

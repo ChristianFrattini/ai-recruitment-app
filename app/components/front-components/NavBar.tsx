@@ -104,13 +104,19 @@ export default function NavBar({
                   Login
                 </LoginLink>
               </NavbarButton>
-              {/* <NavbarButton
+              <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
               >
-                Book a call
-              </NavbarButton> */}
+                {/*ADD EMAIL */}
+                <a
+                  href="mailto:"
+                  className="w-full h-full flex items-center justify-center"
+                >
+                  Contact Us
+                </a>
+              </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>

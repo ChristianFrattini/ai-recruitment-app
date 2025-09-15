@@ -233,3 +233,25 @@ export async function deleteCandidate(formData: FormData) {
   });
   return redirect("/dashboard/cvlibrary");
 }
+
+export async function removeMember(formData: FormData) {
+  const memberId = formData.get("memberId") as string;
+  await prisma.user.delete({
+    where: { id: memberId },
+  });
+  return redirect("/dashboard/profile");
+}
+
+export async function updateAdmins(formData: FormData) {
+  const entries = formData.getAll("user") as string[];
+
+  for (const entry of entries) {
+    const [id, isAdminStr] = entry.split(":");
+    const isAdmin = isAdminStr === "true";
+
+    await prisma.user.update({
+      where: { id },
+      data: { isAdmin },
+    });
+  }
+}
