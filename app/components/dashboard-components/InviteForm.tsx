@@ -12,12 +12,15 @@ import {
 
 import { useState } from "react";
 
-import { Loader2 } from "lucide-react";
+import { Clipboard, Loader2 } from "lucide-react";
 
 export default function InviteForm({ orgId }: { orgId: string }) {
   const [email, setEmail] = useState("");
+  const [emailText, setEmailText] = useState("");
   const [message, setMessage] = useState("");
+  const [inviteLink, setInviteLink] = useState("");
   const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const sendInvite = async (e: any) => {
     e.preventDefault(); // Prevent page reload
@@ -33,7 +36,8 @@ export default function InviteForm({ orgId }: { orgId: string }) {
     const data = await res.json();
 
     if (res.ok) {
-      //setMessage(`Invite sent! Link: ${data.inviteLink}`);
+      setEmailText(email);
+      setInviteLink(` ${data.inviteLink}`);
       setMessage(`Invite sent to ${email}!`);
       setEmail("");
     } else {
@@ -72,8 +76,34 @@ export default function InviteForm({ orgId }: { orgId: string }) {
           </Button>
         </form>
       </CardContent>
-      <CardFooter>
+      <CardFooter className={"flex flex-col gap-3"}>
         <p>{message}</p>
+        <div className={"flex items-center gap-3"}>
+          {inviteLink && (
+            <div className={"flex items-center justify-between gap-2"}>
+              <p className={"md:text-lg text-base font-medium"}>
+                Please, copy and paste this link and send it to{" "}
+                <a
+                  href={`mailto:${emailText}`}
+                  className={"text-blue-600 underline"}
+                >
+                  {emailText}
+                </a>
+                :{inviteLink}
+              </p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  navigator.clipboard.writeText(inviteLink);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 3000);
+                }}
+              >
+                {copied ? "Copied!" : <Clipboard className="h-5 w-5" />}
+              </Button>
+            </div>
+          )}
+        </div>
       </CardFooter>
     </Card>
   );

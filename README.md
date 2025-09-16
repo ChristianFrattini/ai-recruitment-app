@@ -43,5 +43,4 @@ glowing effect
 animated tooltip
 animated modal
 
-double check: when user receives an invitation and there is an error (invalid or expired token) check that the Kinde session is closed
-add email and functionality to the sendInviteEmail.ts DONE
+add message on invite page showing link to join an org DONE
