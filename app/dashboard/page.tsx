@@ -27,8 +27,11 @@ export default async function DashboardPage() {
     <div className={"md:mt-5 md:ml-5 mt-2 ml-5"}>
       <div className={"flex justify-between items-center"}>
         <div>
-          <h2 className={"font-semibold md:text-xl text-lg"}>
-            Welcome back {dbUser.firstName}
+          <h2 className="font-normal  md:text-xl text-lg text-gray-700">
+            Welcome back,{" "}
+            <span className="md:text-2xl text-xl font-medium text-gray-900">
+              {dbUser.firstName}
+            </span>
           </h2>
         </div>
       </div>

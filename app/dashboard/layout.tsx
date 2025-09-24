@@ -25,8 +25,11 @@ export default async function RootLayout({
   return (
     <div>
       <div className={"flex justify-between items-center p-5"}>
-        <div>
-          <h2 className={"font-semibold md:text-2xl text-xl"}>LOGO</h2>
+        <div className="inline-block border border-blue-900 rounded-2xl px-4 py-1">
+          <h2 className="md:text-3xl text-2xl uppercase tracking-tight">
+            <span className="font-extrabold text-blue-900">AHIRE</span>
+            <span className="font-light text-blue-500">HUB</span>
+          </h2>
         </div>
         <div>
           <Button asChild className={"flex items-center justify-center"}>

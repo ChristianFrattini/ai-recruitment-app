@@ -96,18 +96,28 @@ export default function NavBar({
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton as="div" className="w-full">
-                <LoginLink
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full h-full flex items-center justify-center"
+              {authenticated ? (
+                <NavbarButton
+                  className={"flex items-center justify-center gap-1 w-full"}
+                  href={"/dashboard"}
                 >
-                  Login
-                </LoginLink>
-              </NavbarButton>
+                  <House className={"h-5 w-5"} /> Dashboard
+                </NavbarButton>
+              ) : (
+                <NavbarButton as="div" className="w-full">
+                  <LoginLink
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full h-full flex items-center justify-center"
+                  >
+                    Login
+                  </LoginLink>
+                </NavbarButton>
+              )}
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
                 className="w-full"
+                as={"div"}
               >
                 {/*ADD EMAIL */}
                 <a

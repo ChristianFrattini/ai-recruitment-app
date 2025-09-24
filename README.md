@@ -42,5 +42,3 @@ glowing effect
 
 animated tooltip
 animated modal
-
-add message on invite page showing link to join an org DONE
