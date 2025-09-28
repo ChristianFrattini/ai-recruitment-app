@@ -24,23 +24,25 @@ export default async function RootLayout({
 
   return (
     <div>
-      <div className={"flex justify-between items-center p-5"}>
-        <div className="inline-block border border-blue-900 rounded-2xl px-4 py-1">
-          <h2 className="md:text-3xl text-2xl uppercase tracking-tight">
-            <span className="font-extrabold text-blue-900">AHIRE</span>
-            <span className="font-light text-blue-500">HUB</span>
-          </h2>
-        </div>
-        <div>
-          <Button asChild className={"flex items-center justify-center"}>
-            <LogoutLink>
-              <LogOut className={"h-5 w-5"} />
-              <span className={"hidden md:inline"}>Logout</span>
-            </LogoutLink>
-          </Button>
+      <div className={"w-full fixed top-0 "}>
+        <div className={"flex justify-between items-center p-5"}>
+          <div className="inline-block border border-blue-900 rounded-2xl px-4 py-1">
+            <h2 className="md:text-3xl text-2xl uppercase tracking-tight">
+              <span className="font-extrabold text-blue-900">AHIRE</span>
+              <span className="font-light text-blue-500">HUB</span>
+            </h2>
+          </div>
+          <div>
+            <Button asChild className={"flex items-center justify-center"}>
+              <LogoutLink>
+                <LogOut className={"h-5 w-5"} />
+                <span className={"hidden md:inline"}>Logout</span>
+              </LogoutLink>
+            </Button>
+          </div>
         </div>
       </div>
-      {children}
+      <div className={"mt-[10vh]"}>{children}</div>
 
       <NavBar />
     </div>

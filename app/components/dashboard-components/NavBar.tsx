@@ -39,7 +39,7 @@ export default function NavBar() {
   ];
   return (
     <>
-      <div className=" fixed flex w-full items-center justify-center bottom-14 border-red-400">
+      <div className=" fixed flex w-full items-center justify-center bottom-14 border-red-400 z-50 ">
         <FloatingDock
           mobileClassName="-translate-x-[40vw]" // only for demo, remove for production
           items={links}
