@@ -24,7 +24,7 @@ export default async function RootLayout({
 
   return (
     <div>
-      <div className={"w-full fixed top-0 "}>
+      <div className={"w-full fixed top-0 bg-white  z-50 "}>
         <div className={"flex justify-between items-center p-5"}>
           <div className="inline-block border border-blue-900 rounded-2xl px-4 py-1">
             <h2 className="md:text-3xl text-2xl uppercase tracking-tight">
@@ -42,7 +42,7 @@ export default async function RootLayout({
           </div>
         </div>
       </div>
-      <div className={"mt-[10vh]"}>{children}</div>
+      <div className={"mt-[12vh]"}>{children}</div>
 
       <NavBar />
     </div>
